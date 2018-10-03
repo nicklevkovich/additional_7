@@ -35,8 +35,8 @@ module.exports = function solveSudoku(matrix) {
     else 
       l = 6;
 
-    for (let i = k; i !== k+2; i++)
-      for (let j = l; j !== l+2; j++) {
+    for (let i = k; i <= k+2; i++)
+      for (let j = l; j <= l+2; j++) {
         if (board[i][j] !== 0) variantsArray[board[i][j] - 1] = 1;
       };
     for (let i = 0; i < 9; i++) {
@@ -56,7 +56,7 @@ module.exports = function solveSudoku(matrix) {
     };
     if (isSolved(board) === 0) {
       loop: for (let i = 0; i < 9; i++)
-        for (let j = 0; j <  9; j++)
+        for (let j = 0; j < 9; j++)
           if (board[i][j] === 0) {
             x = i;
             y = j;

@@ -13,7 +13,11 @@ function isSolved(initial, sudoku) {
         (sudoku[i].reduce((s,v)=>s.add(v),new Set()).size != 9) ||
         (sudoku.reduce((s,v)=>s.add(v[i]),new Set()).size != 9) ||
         (sudoku.slice(r,r+3).reduce((s,v)=>v.slice(c,c+3).reduce((s,v)=>s.add(v),s),new Set()).size != 9)
-      ) return false;
+      ) 
+      {
+        console.log('oblom',r,c);
+        return false;
+      };
   }
   return initial.every((row, rowIndex) => {
     return row.every((num, colIndex) => {
