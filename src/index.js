@@ -21,19 +21,13 @@ module.exports = function solveSudoku(matrix) {
     let k = 0, 
         l = 0;
     
-    if ((x >= 0)&&(x <= 2)) 
-      k = 0
-    else if ((x >= 3)&&(x <= 5)) 
-      k = 3
-    else 
-      k = 6;
+    if ((x >= 0)&&(x <= 2))         k = 0
+      else if ((x >= 3)&&(x <= 5))  k = 3
+        else                        k = 6;
     
-    if ((y >= 0)&&(y <= 2)) 
-      l = 0
-    else if ((y >= 3)&&(y <= 5)) 
-      l = 3
-    else 
-      l = 6;
+    if ((y >= 0)&&(y <= 2))         l = 0
+      else if ((y >= 3)&&(y <= 5))  l = 3
+        else                        l = 6;
 
     for (let i = k; i <= k+2; i++)
       for (let j = l; j <= l+2; j++) {
@@ -63,18 +57,16 @@ module.exports = function solveSudoku(matrix) {
             break loop;
           };
       variantsArray = possibleVariants(board, x, y);
-      let empty = true;
-        for (let i = 0; i < 9; i++) {
-          if (variantsArray[i] !== 0) {
-            empty = false;
-            board[x][y] = variantsArray[i];
-            variantsArray[i] = 0;
-            let res = sudokuSolver(board);
-            if (res) return res;
-          };
-          board[x][y] = 0;
+      for (let i = 0; i < 9; i++) {
+        if (variantsArray[i] !== 0) {
+          empty = false;
+          board[x][y] = variantsArray[i];
+          variantsArray[i] = 0;
+          let res = sudokuSolver(board);
+          if (res) return res;
         };
-        if (empty) return false;
+        board[x][y] = 0;
+      };
     };
   };
   return sudokuSolver(board);
